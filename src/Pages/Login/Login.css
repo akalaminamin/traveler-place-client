@@ -1,0 +1,35 @@
+.login-wrapper {
+  height: 91.5vh;
+  background: rgba(220, 248, 247, 0.418);
+}
+.login {
+  width: 45vw;
+  background: #fff;
+  height: 50vh;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+}
+
+.google-sign-in {
+  background: blue;
+  display: flex;
+  padding: 8px 0px;
+}
+
+button.google-btn {
+  background: red;
+  background: #efefef;
+  color: blue;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  font-weight: 500;
+}
+.google-icon{
+  font-size: 30px;
+}
+
+@media (max-width: 768px) {
+  .login {
+    width: 95vw;
+    height: 50vh;
+  }
+}

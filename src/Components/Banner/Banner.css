@@ -1,0 +1,21 @@
+.carousel-custom{
+    height: 90vh !important;
+}
+
+.carousel-img{
+    height: 80vh !important;
+    object-fit: cover;
+}
+.carousel-item{
+    position: relative;
+    height: 80vh !important;
+}
+.carousel-item::before{
+    content: " ";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.432);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}

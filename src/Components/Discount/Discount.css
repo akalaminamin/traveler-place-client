@@ -1,0 +1,9 @@
+.discount-wrapper{
+    height: 65vh;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../Assest/image/slide3.a89c8d0c.jpg") no-repeat center/cover ;
+    color:#fff;
+}
+.description{
+    font-size: 18px;
+    line-height: 33px;
+}
