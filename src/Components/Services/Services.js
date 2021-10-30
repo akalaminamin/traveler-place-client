@@ -46,8 +46,7 @@ const Services = () => {
               <Button
                 as={Link}
                 to="/placeorder"
-                onClick={() => handleBookNow(index)}
-              >
+                onClick={() => handleBookNow(index)}>
                 Book Now
               </Button>
             </Card>
