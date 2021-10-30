@@ -51,7 +51,7 @@ const ManageOrder = () => {
                   <td>{service.email}</td>
                   <td>${service.price}</td>
                   <td>
-                    <span class="badge bg-danger px-3 py-2">Pending</span>
+                    <span className="badge bg-danger px-3 py-2">Pending</span>
                   </td>
                   <td>
                     <button

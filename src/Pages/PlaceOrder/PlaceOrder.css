@@ -1,0 +1,45 @@
+.img {
+  height: 450px !important;
+}
+.placeOrderForm {
+  background: #fff;
+  border: 1px solid #e0e0e1;
+  padding: 25px 15px;
+}
+
+input.formInput {
+  width: 100%;
+  padding: 10px 8px;
+  border: none;
+  outline: none;
+  background: #e7e7e7;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 3px;
+  transition: all ease-in-out 0.3s;
+}
+input.formInput:focus {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: #fff;
+  border-radius: 3px;
+}
+
+label.formLabel {
+  font-size: 16px;
+  font-weight: 600;
+}
+button.placeOrderBtn {
+  padding: 10px 18px;
+  background: transparent;
+  margin-top: 20px;
+  border: 1px solid;
+  border: 1px solid blue;
+  color: blue;
+  font-weight: 500;
+  font-size: 17px;
+  transition: all ease-in-out  .3s;
+}
+button.placeOrderBtn:hover{
+    background: blue;
+    color: #fff;
+}

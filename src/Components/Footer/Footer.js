@@ -73,21 +73,21 @@ const Footer = () => {
             © 2021 Travel Tour Site Rights Reserved.
           </Col>
           <Col sx={12} sm={12} md={6} className="text-center text-md-end">
-            <Link className="ms-3 text-light">
+            <span className="ms-3 text-light">
               <FaFacebookF />
-            </Link>
-            <Link className="ms-3 text-light">
+            </span>
+            <span className="ms-3 text-light">
               <FaLinkedinIn />
-            </Link>
-            <Link className="ms-3 text-light">
+            </span>
+            <span className="ms-3 text-light">
               <FaTwitter />
-            </Link>
-            <Link className="ms-3 text-light">
+            </span>
+            <span className="ms-3 text-light">
               <FaPinterest />
-            </Link>
-            <Link className="ms-3 text-light">
+            </span>
+            <span className="ms-3 text-light">
               <FaInstagram />
-            </Link>
+            </span>
           </Col>
         </Row>
       </Container>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import "./Services.css";
 const Services = () => {
   const [service, setService] = useState([]);
   const { currentUser } = useAuth();
+  const history = useHistory()
 
   useEffect(() => {
     fetch("https://frozen-ravine-18988.herokuapp.com/services")
@@ -13,16 +14,17 @@ const Services = () => {
       .then((data) => setService(data));
   }, []);
 
-  const handleBookNow = (index) => {
-    const BookNowData = service[index];
-    BookNowData.email = currentUser.email;
-    fetch("https://frozen-ravine-18988.herokuapp.com/bookNow", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(BookNowData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+  const handleBookNow = (id) => {
+    // const BookNowData = service[index];
+    // BookNowData.email = currentUser.email;
+    // fetch("https://frozen-ravine-18988.herokuapp.com/bookNow", {
+    //   method: "POST",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify(BookNowData),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
+    history.push(`/placeorder/${id}`)
   };
   return (
     <Container>
@@ -41,12 +43,11 @@ const Services = () => {
               </div>
               <Card.Body className="px-0">
                 <Card.Title>{singleService.name}</Card.Title>
-                <Card.Text>{singleService.body}</Card.Text>
+                <Card.Text>{singleService.body.slice(0, 100)}</Card.Text>
               </Card.Body>
               <Button
-                as={Link}
-                to="/placeorder"
-                onClick={() => handleBookNow(index)}>
+                onClick={() => handleBookNow(singleService._id)}
+                >
                 Book Now
               </Button>
             </Card>

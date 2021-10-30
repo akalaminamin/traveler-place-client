@@ -14,7 +14,7 @@ import MyOrder from './Pages/MyOrder/MyOrder';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <AuthProvider>
         <Router>
           <Header></Header>
@@ -25,7 +25,7 @@ function App() {
             <Route exact path="/addservice">
               <AddService></AddService>
             </Route>
-            <PrivateRoute  exact path="/placeorder">
+            <PrivateRoute  exact path="/placeorder/:id">
               <PlaceOrder></PlaceOrder>
             </PrivateRoute>
             <Route exact path="/login">
@@ -43,7 +43,7 @@ function App() {
           </Switch>
         </Router>
       </AuthProvider>
-    </div>
+    </>
   );
 }
 

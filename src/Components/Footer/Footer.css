@@ -8,3 +8,10 @@
 .footer-nav:hover{
     color: blue !important;
 }
+.footer span{
+    cursor: pointer;
+    transition: all .3s;
+}
+.footer span:hover{
+    color: blue !important;
+}
