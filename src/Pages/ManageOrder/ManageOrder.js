@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Table, Container } from "react-bootstrap";
-import { AiTwotoneDelete } from "react-icons/ai";
+import { Container, Table } from "react-bootstrap";
 import "./ManageOrder.css";
 
 const ManageOrder = () => {
   const [services, setServices] = useState([]);
   const [isDelete, setIsDelete] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/bookNow`)
+    fetch(`https://frozen-ravine-18988.herokuapp.com/bookNow`)
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [isDelete]);
   const handleDelete = (id) => {
     const confirmMessage = window.confirm("Are you sure?");
     if (confirmMessage) {
-      fetch(`http://localhost:5000/dashboard/${id}`, {
+      fetch(`https://frozen-ravine-18988.herokuapp.com/dashboard/${id}`, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
       })

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import useAuth from "../../Hooks/useAuth";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
 const MyOrder = () => {
   const { currentUser } = useAuth();
   const [myOrderData, setMyOrderData] = useState([]);
   const [isDelete, setIsDelete] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/bookNow/${currentUser?.email}`)
+    fetch(`https://frozen-ravine-18988.herokuapp.com/bookNow/${currentUser?.email}`)
       .then((res) => res.json())
       .then((data) => setMyOrderData(data));
   }, [isDelete]);
@@ -14,7 +14,7 @@ const MyOrder = () => {
   const handleDeleteItem = (id) => {
     const confimMessage = window.confirm("Are your sure delete your Service?");
     if (confimMessage) {
-      fetch(`http://localhost:5000/bookNow/${id}`, {
+      fetch(`https://frozen-ravine-18988.herokuapp.com/bookNow/${id}`, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
       })

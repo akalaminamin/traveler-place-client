@@ -11,7 +11,7 @@ const PlaceOrder = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/placeOrder", {
+    fetch("https://frozen-ravine-18988.herokuapp.com/placeOrder", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

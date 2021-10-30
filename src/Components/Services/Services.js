@@ -8,7 +8,7 @@ const Services = () => {
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://frozen-ravine-18988.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setService(data));
   }, []);
@@ -16,7 +16,7 @@ const Services = () => {
   const handleBookNow = (index) => {
     const BookNowData = service[index];
     BookNowData.email = currentUser.email;
-    fetch("http://localhost:5000/bookNow", {
+    fetch("https://frozen-ravine-18988.herokuapp.com/bookNow", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(BookNowData),
