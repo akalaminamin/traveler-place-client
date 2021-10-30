@@ -1,0 +1,10 @@
+.footer{
+    background: black;
+    color: #fff;
+}
+.footer-nav{
+    transition: all ease-in-out .3s;
+}
+.footer-nav:hover{
+    color: blue !important;
+}
