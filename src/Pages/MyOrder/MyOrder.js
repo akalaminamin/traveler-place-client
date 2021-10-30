@@ -32,7 +32,7 @@ const MyOrder = () => {
   };
   return (
     <div>
-      <h2>Your All Booking Service</h2>
+      <h2 className="text-center py-5">Your All Booking Service</h2>
       <Container>
         <Row>
           {myOrderData.map((singleData) => (
