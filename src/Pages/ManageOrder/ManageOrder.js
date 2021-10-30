@@ -31,36 +31,42 @@ const ManageOrder = () => {
   };
   return (
     <>
-      <div className="manageOrder">
-      <Container className='bg-success'>
-      <Table hover className="mt-3">
-        <thead>
-          <tr>
-            <th>Services</th>
-            <th>Description</th>
-            <th>Email ID</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody className="text-start">
-          {services.map((service) => (
-            <tr>
-              <td>{service.name}</td>
-              <td>{service.body}</td>
-              <td>{service.email}</td>
-              <td>${service.price}</td>
-              <td
-                className="text-center"
-                onClick={() => handleDelete(service._id)}
-              >
-                {<AiTwotoneDelete className="text-danger delete-icon" />}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </Container>
+      <div className="manageOrder pt-5">
+        <Container>
+          <Table striped hover bordered>
+            <thead>
+              <tr>
+                <th>Services</th>
+                <th>Description</th>
+                <th>Email ID</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody className="text-start">
+              {services.map((service) => (
+                <tr>
+                  <td>{service.name}</td>
+                  <td>{service.body}</td>
+                  <td>{service.email}</td>
+                  <td>${service.price}</td>
+                  <td>
+                    <span class="badge bg-danger px-3 py-2">Pending</span>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => handleDelete(service._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Container>
       </div>
     </>
   );
