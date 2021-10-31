@@ -1,16 +1,17 @@
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./Pages/Home/Home";
+import './App.css';
+import Footer from './Components/Footer/Footer';
+import Header from './Components/Header/Header';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+import AuthProvider from './Context/AuthContext';
 import AddService from './Pages/AddService/AddService';
-import PlaceOrder from './Pages/PlaceOrder/PlaceOrder';
+import Home from "./Pages/Home/Home";
 import Login from './Pages/Login/Login';
 import ManageOrder from './Pages/ManageOrder/ManageOrder';
-import NotFound from './Pages/NotFound/NotFound';
-import Header from './Components/Header/Header';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthProvider from './Context/AuthContext';
-import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import MyOrder from './Pages/MyOrder/MyOrder';
+import NotFound from './Pages/NotFound/NotFound';
+import PlaceOrder from './Pages/PlaceOrder/PlaceOrder';
 
 function App() {
   return (
@@ -41,10 +42,14 @@ function App() {
               <NotFound></NotFound>
             </Route>
           </Switch>
+          <Footer></Footer>
         </Router>
       </AuthProvider>
     </>
   );
-}
+  // `http://localhost:5000/
 
+}
 export default App;
+
+

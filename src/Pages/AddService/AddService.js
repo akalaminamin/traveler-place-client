@@ -1,10 +1,9 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import useAuth from "../../Hooks/useAuth";
 import "./AddService.css";
 
 const AddService = () => {
-  const { currentUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -12,8 +11,7 @@ const AddService = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    data.email = currentUser.email;
-    fetch("https://frozen-ravine-18988.herokuapp.com/addservice", {
+    fetch("http://localhost:5000/addservice", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -27,42 +25,42 @@ const AddService = () => {
       });
   };
   return (
-    <div className="d-flex align-items-center justify-content-center flex-column form-wrapper">
-      <form onSubmit={handleSubmit(onSubmit)} className="form p-4">
+    <div className="form-wrapper d-flex">
+      <Container className="d-flex align-items-center justify-content-center flex-column">
+      <form onSubmit={handleSubmit(onSubmit)} className="form p-4 w-sm-100 ">
         <div className="bg-primary p-2 text-light text-center text-uppercase mb-2">
           <h5 className="mb-0">Add Tour List</h5>
         </div>
-        <div className="d-flex">
-          <input
-            className="input-field "
+        <div className="d-flex w-100">
+          <input 
+            className="input-field w-50"
             type="name"
             placeholder="Tour Place name"
             {...register("name", { required: true })}
           />
           <br />
           <input
-            className="input-field "
+            className="input-field w-50"
             type="number"
             placeholder="Price"
             {...register("price", { required: true })}
           />
         </div>
-        <div className="d-flex">
+        <div className="d-flex w-100">
           <input
-            className="input-field "
+            className="input-field w-50"
             type="text"
             placeholder="tour place image url"
             {...register("image_url", { required: true })}
           />
           <br />
           <input
-            className="input-field "
+            className="input-field w-50"
             type="tel"
             placeholder="Phone"
             {...register("phone", { required: true })}
           />
         </div>
-        {/* <input className="my-2" type="file" {...register("image")} /> */}
         <textarea
           className="w-100 input-field"
           cols="40"
@@ -78,6 +76,7 @@ const AddService = () => {
           className="addBtn btn btn-primary"
         />
       </form>
+    </Container>
     </div>
   );
 };

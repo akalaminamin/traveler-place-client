@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import "./PlaceOrder.css";
 const PlaceOrder = () => {
   const { id } = useParams();
-  const [orderData, setOrderData] = useState();
   const [serviceDetails, setServiceDetails] = useState([]);
-  const [findService, setFindServide] = useState();
+  const [findService, setFindService] = useState();
   const { currentUser } = useAuth();
   const {
     register,
@@ -18,7 +17,7 @@ const PlaceOrder = () => {
   } = useForm();
 
   useEffect(() => {
-    fetch("https://frozen-ravine-18988.herokuapp.com/services")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setServiceDetails(data));
   }, []);
@@ -26,12 +25,12 @@ const PlaceOrder = () => {
   useEffect(() => {
     if (serviceDetails.length > 0) {
       const matchDetails = serviceDetails.find((service) => service._id == id);
-      setFindServide(matchDetails);
+      setFindService(matchDetails);
     }
   }, [serviceDetails]);
 
   const onSubmit = (data) => {
-    fetch("https://frozen-ravine-18988.herokuapp.com/placeOrder", {
+    fetch("http://localhost:5000/placeOrder", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -39,23 +38,12 @@ const PlaceOrder = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.acknowledged) {
-          setOrderData(result);
-          console.log(result);
+          console.log(result)
           alert("Your Order is successfull");
           reset();
         }
       });
-      console.log(data)
   };
-  const handlePlaceOrder = (id) =>{
-    // fetch("https://frozen-ravine-18988.herokuapp.com/bookNow", {
-    //   method: "POST",
-    //   headers: { "content-type": "application/json" },
-    //   body: JSON.stringify(BookNowData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
-  }
   return (
     <Container>
       <Row className="my-4">
@@ -107,13 +95,13 @@ const PlaceOrder = () => {
             />
             <br />
             <label className="formLabel" htmlFor="name">
-              Total Room{" "}
+              Price
             </label>
             <input
               className="my-2 formInput"
               type="number"
-              placeholder="Number of Rooms"
-              {...register("number", { required: true })}
+              placeholder="Price"
+              {...register("price", { required: true })}
             />
             <br />
             <label className="formLabel" htmlFor="date">
@@ -133,7 +121,7 @@ const PlaceOrder = () => {
               {...register("End date", { required: true })}
             />
             <br />
-            <button type="submit" value="Place Order" className="placeOrderBtn" onClick={() => handlePlaceOrder(findService._id)}>
+            <button type="submit" value="Place Order" className="placeOrderBtn">
               Place Order
             </button>
           </form>

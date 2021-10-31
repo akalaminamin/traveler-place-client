@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import "./Services.css";
 const Services = () => {
@@ -9,21 +9,13 @@ const Services = () => {
   const history = useHistory()
 
   useEffect(() => {
-    fetch("https://frozen-ravine-18988.herokuapp.com/services")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setService(data));
   }, []);
 
+  console.log(service)
   const handleBookNow = (id) => {
-    // const BookNowData = service[index];
-    // BookNowData.email = currentUser.email;
-    // fetch("https://frozen-ravine-18988.herokuapp.com/bookNow", {
-    //   method: "POST",
-    //   headers: { "content-type": "application/json" },
-    //   body: JSON.stringify(BookNowData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
     history.push(`/placeorder/${id}`)
   };
   return (
@@ -31,7 +23,7 @@ const Services = () => {
       <h2 className="text-center">TOP PLACES</h2>
       <p className="text-center mb-5">BEST TRAVEL PACKAGES AVAILABLE</p>
       <Row className="mb-5">
-        {service.map((singleService, index) => (
+        {service.map((singleService) => (
           <Col sm={12} md={6} lg={4} key={singleService._id}>
             <Card className="custom-card mb-4">
               <div>

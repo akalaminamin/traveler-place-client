@@ -1,6 +1,5 @@
 .manageOrder{
-    height: 91.5vh;
-    background: rgba(220, 248, 247, 0.418);
+    min-height: 95vh;
 }
 .delete-icon{
     cursor: pointer;

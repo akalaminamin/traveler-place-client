@@ -1,3 +1,16 @@
+.custom-nav{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+}
 img.login-img{
   width: 50 px !important;
+}
+.headerNav{
+  font-weight: bold !important;
+  padding: 10px 15px !important;
+}
+.headerNav:focus{
+  color: blue !important;
+}
+.headerNav:active{
+  color: blue !important;
 }
