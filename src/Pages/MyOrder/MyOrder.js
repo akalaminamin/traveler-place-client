@@ -60,7 +60,13 @@ const MyOrder = () => {
                 <td>{order.placeName}</td>
                 <td>${order.price}</td>
                 <td>
-                  <span className="badge bg-warning px-3 py-2">Pending</span>
+                  <span
+                    className={`badge ${
+                      order.status === "Approved" ? "bg-success" : "bg-warning"
+                    } px-3 py-2`}
+                  >
+                    {order.status}
+                  </span>
                 </td>
                 <td>
                   <button

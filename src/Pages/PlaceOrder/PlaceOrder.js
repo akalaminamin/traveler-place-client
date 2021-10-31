@@ -9,12 +9,7 @@ const PlaceOrder = () => {
   const [serviceDetails, setServiceDetails] = useState([]);
   const [findService, setFindService] = useState();
   const { currentUser } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   useEffect(() => {
     fetch("https://frozen-ravine-18988.herokuapp.com/services")
@@ -30,6 +25,7 @@ const PlaceOrder = () => {
   }, [serviceDetails]);
 
   const onSubmit = (data) => {
+    data.status = "Pending";
     fetch("https://frozen-ravine-18988.herokuapp.com/placeOrder", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -38,7 +34,6 @@ const PlaceOrder = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.acknowledged) {
-          console.log(result);
           alert("Your Order is successfull");
           reset();
         }

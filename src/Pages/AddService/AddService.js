@@ -8,7 +8,6 @@ const AddService = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     fetch("https://frozen-ravine-18988.herokuapp.com/addservice", {

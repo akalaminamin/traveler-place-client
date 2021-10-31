@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Dropdown, DropdownButton, Table } from "react-bootstrap";
+import { Container, Button, Table } from "react-bootstrap";
 import "./ManageOrder.css";
 
 const ManageOrder = () => {
@@ -22,6 +22,25 @@ const ManageOrder = () => {
           console.log(result);
           if (result.deletedCount) {
             alert("Delete Succcess full");
+            setIsDelete(true);
+          } else {
+            setIsDelete(false);
+          }
+        });
+    }
+  };
+
+  const handleUpdate = (id) => {
+    const confirmMessage = window.confirm("Do you want to update your Status?");
+    if (confirmMessage) {
+      fetch(`https://frozen-ravine-18988.herokuapp.com/myOrder/${id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(services),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.matchedCount) {
             setIsDelete(true);
           } else {
             setIsDelete(false);
@@ -55,16 +74,16 @@ const ManageOrder = () => {
                   <td>{service.placeName}</td>
                   <td>${service.price}</td>
                   <td>
-                    <DropdownButton
-                      variant="success"
-                      id="dropdown-basic-button"
-                      title="PENDING"
+                    <Button
                       size="sm"
-                      className="text-uppercase"
+                      variant={
+                        service.status === "Approved" ? "success" : "warning"
+                      }
+                      className="text-light"
+                      onClick={() => handleUpdate(service._id)}
                     >
-                      <Dropdown.Item>PENDING</Dropdown.Item>
-                      <Dropdown.Item>APPROVED</Dropdown.Item>
-                    </DropdownButton>
+                      {service.status}
+                    </Button>
                   </td>
                   <td>
                     <button
