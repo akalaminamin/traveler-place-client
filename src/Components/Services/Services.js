@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
 import "./Services.css";
 const Services = () => {
   const [service, setService] = useState([]);
-  const { currentUser } = useAuth();
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://frozen-ravine-18988.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setService(data));
   }, []);
 
-  console.log(service)
   const handleBookNow = (id) => {
-    history.push(`/placeorder/${id}`)
+    history.push(`/placeorder/${id}`);
   };
   return (
     <Container>
@@ -37,9 +34,7 @@ const Services = () => {
                 <Card.Title>{singleService.name}</Card.Title>
                 <Card.Text>{singleService.body.slice(0, 100)}</Card.Text>
               </Card.Body>
-              <Button
-                onClick={() => handleBookNow(singleService._id)}
-                >
+              <Button onClick={() => handleBookNow(singleService._id)}>
                 Book Now
               </Button>
             </Card>

@@ -63,9 +63,13 @@ const Contact = () => {
                 placeholder="Your Message..."
                 className="contact-input w-100 my-2"
               ></textarea>
-              <button type="submit" value="Place Order" className="placeOrderBtn">
-              SEND
-            </button>
+              <button
+                type="submit"
+                value="Place Order"
+                className="placeOrderBtn"
+              >
+                SEND
+              </button>
             </form>
           </Col>
         </Row>

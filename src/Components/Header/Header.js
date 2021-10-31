@@ -10,7 +10,7 @@ const Header = () => {
   const { currentUser, logOut } = useAuth();
   return (
     <>
-      <Navbar bg="light"  expand="lg" className="custom-nav">
+      <Navbar bg="light" expand="lg" className="custom-nav">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img src={logo} alt="" />
@@ -40,14 +40,16 @@ const Header = () => {
                   <Nav.Link as={Link} to="/myorder" className="headerNav">
                     My order
                   </Nav.Link>
-                  <h6 className="mx-2 mb-0 text-danger">{currentUser.displayName}</h6>
+                  <h6 className="mx-2 mb-0 text-danger">
+                    {currentUser.displayName}
+                  </h6>
                   <img
                     style={{ width: "50px" }}
                     className="login-img rounded-circle mx-3"
                     src={currentUser.photoURL}
                     alt="user photo"
                   />
-                  <Nav.Link 
+                  <Nav.Link
                     className="d-flex align-items-center headerNav"
                     as={Link}
                     to="/login"

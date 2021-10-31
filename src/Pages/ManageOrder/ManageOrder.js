@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Container, Table, DropdownButton, Dropdown } from "react-bootstrap";
+import { Container, Dropdown, DropdownButton, Table } from "react-bootstrap";
 import "./ManageOrder.css";
 
 const ManageOrder = () => {
   const [services, setServices] = useState([]);
   const [isDelete, setIsDelete] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/myOrder`)
+    fetch(`https://frozen-ravine-18988.herokuapp.com/myOrder`)
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [isDelete]);
   const handleDelete = (id) => {
     const confirmMessage = window.confirm("Are you sure?");
     if (confirmMessage) {
-      fetch(`http://localhost:5000/myOrder/${id}`, {
+      fetch(`https://frozen-ravine-18988.herokuapp.com/myOrder/${id}`, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
       })
@@ -56,9 +56,12 @@ const ManageOrder = () => {
                   <td>${service.price}</td>
                   <td>
                     <DropdownButton
-                    variant="success"
+                      variant="success"
                       id="dropdown-basic-button"
-                      title="PENDING" size="sm" className="text-uppercase">
+                      title="PENDING"
+                      size="sm"
+                      className="text-uppercase"
+                    >
                       <Dropdown.Item>PENDING</Dropdown.Item>
                       <Dropdown.Item>APPROVED</Dropdown.Item>
                     </DropdownButton>

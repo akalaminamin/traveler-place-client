@@ -17,7 +17,7 @@ const PlaceOrder = () => {
   } = useForm();
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://frozen-ravine-18988.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setServiceDetails(data));
   }, []);
@@ -30,7 +30,7 @@ const PlaceOrder = () => {
   }, [serviceDetails]);
 
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/placeOrder", {
+    fetch("https://frozen-ravine-18988.herokuapp.com/placeOrder", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -38,7 +38,7 @@ const PlaceOrder = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.acknowledged) {
-          console.log(result)
+          console.log(result);
           alert("Your Order is successfull");
           reset();
         }
