@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import { FiLogOut } from "react-icons/fi";
 import logo from "../../Assest/image/logo.png";
@@ -8,6 +9,17 @@ import "./Header.css";
 
 const Header = () => {
   const { currentUser, logOut } = useAuth();
+  const [admin, setAdmin] = useState([]);
+  // useEffect(() => {
+  //   axios.get("http://localhost:5000/admin").then((res) => {
+  //     const userAdmin = res.data.find(
+  //       (singleAdmin) => singleAdmin?.email === currentUser?.email
+  //     );
+  //     setAdmin(userAdmin);
+  //   });
+  // }, []);
+
+  console.log(admin, currentUser?.email);
   return (
     <>
       <Navbar bg="light" expand="lg" className="custom-nav">
@@ -25,24 +37,27 @@ const Header = () => {
               <Nav.Link className="headerNav" as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link className="headerNav" as={Link} to="/addservice">
-                Add Service
-              </Nav.Link>
               {!currentUser?.email ? (
                 <Nav.Link as={Link} to="/login" className="headerNav">
                   Login
                 </Nav.Link>
               ) : (
                 <>
-                  <Nav.Link className="headerNav" as={Link} to="/manageorder">
-                    Manage Order
+                  <Nav.Link className="headerNav" as={Link} to="/addservice">
+                    Add Place
                   </Nav.Link>
                   <Nav.Link as={Link} to="/myorder" className="headerNav">
-                    My order
+                    My Posts
                   </Nav.Link>
-                  <h6 className="mx-2 mb-0 text-danger">
+                  <Nav.Link className="headerNav" as={Link} to="/manageorder">
+                    Manage Posts
+                  </Nav.Link>
+                  <Nav.Link className="headerNav" as={Link} to="/admin">
+                    Admin
+                  </Nav.Link>
+                  {/* <h6 className="mx-2 mb-0 text-danger">
                     {currentUser.displayName}
-                  </h6>
+                  </h6> */}
                   <img
                     style={{ width: "50px" }}
                     className="login-img rounded-circle mx-3"

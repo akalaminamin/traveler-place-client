@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import useAuth from "../../Hooks/useAuth";
 import "./AddService.css";
 
 const AddService = () => {
@@ -9,8 +10,11 @@ const AddService = () => {
     handleSubmit,
     reset,
   } = useForm();
+  const {currentUser} = useAuth();
   const onSubmit = (data) => {
-    fetch("https://frozen-ravine-18988.herokuapp.com/addservice", {
+    data.status = "Pending"
+    data.email = currentUser.email
+    fetch("http://localhost:5000/services/addPlace", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -22,13 +26,14 @@ const AddService = () => {
           reset();
         }
       });
+      console.log(data);
   };
   return (
     <div className="form-wrapper d-flex">
       <Container className="d-flex align-items-center justify-content-center flex-column">
         <form onSubmit={handleSubmit(onSubmit)} className="form p-4 w-sm-100 ">
-          <div className="bg-primary p-2 text-light text-center text-uppercase mb-2">
-            <h5 className="mb-0">Add Tour List</h5>
+          <div className="bg-primary p-2 text-light text-center text-capitalize mb-2">
+            <h5 className="mb-0">Add your own traveling experience place</h5>
           </div>
           <div className="d-flex w-100">
             <input

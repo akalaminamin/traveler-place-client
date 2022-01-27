@@ -12,6 +12,7 @@ import ManageOrder from "./Pages/ManageOrder/ManageOrder";
 import MyOrder from "./Pages/MyOrder/MyOrder";
 import NotFound from "./Pages/NotFound/NotFound";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
+import Admin from "./Pages/Admin/Admin";
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
             <PrivateRoute exact path="/manageorder">
               <ManageOrder></ManageOrder>
             </PrivateRoute>
+            <PrivateRoute exact path="/admin">
+              <Admin></Admin>
+            </PrivateRoute>
             <Route path="*">
               <NotFound></NotFound>
             </Route>
@@ -50,4 +54,4 @@ function App() {
 }
 export default App;
 
-// https://frozen-ravine-18988.herokuapp.com/
+// http://localhost:5000/

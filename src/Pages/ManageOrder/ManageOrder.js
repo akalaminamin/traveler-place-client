@@ -6,14 +6,14 @@ const ManageOrder = () => {
   const [services, setServices] = useState([]);
   const [isDelete, setIsDelete] = useState(null);
   useEffect(() => {
-    fetch(`https://frozen-ravine-18988.herokuapp.com/myOrder`)
+    fetch(`http://localhost:5000/services`)
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [isDelete]);
   const handleDelete = (id) => {
     const confirmMessage = window.confirm("Are you sure?");
     if (confirmMessage) {
-      fetch(`https://frozen-ravine-18988.herokuapp.com/myOrder/${id}`, {
+      fetch(`http://localhost:5000/services/${id}`, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
       })
@@ -33,7 +33,7 @@ const ManageOrder = () => {
   const handleUpdate = (id) => {
     const confirmMessage = window.confirm("Do you want to update your Status?");
     if (confirmMessage) {
-      fetch(`https://frozen-ravine-18988.herokuapp.com/myOrder/${id}`, {
+      fetch(`http://localhost:5000/services/${id}`, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(services),
