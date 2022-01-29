@@ -14,7 +14,7 @@ const AddService = () => {
   const onSubmit = (data) => {
     data.status = "Pending"
     data.email = currentUser.email
-    fetch("http://localhost:5000/services/addPlace", {
+    fetch("https://mighty-cove-64498.herokuapp.com/services/addPlace", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

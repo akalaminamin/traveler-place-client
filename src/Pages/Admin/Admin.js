@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+// import Swal from "sweetalert2";
+
 
 import {
   Container,
@@ -12,19 +14,26 @@ import {
 const Admin = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/admin", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        if (data.acknowledged) {
-          alert("Admin successfully added");
-          reset();
-        }
-      });
+    axios.post("https://mighty-cove-64498.herokuapp.com/admin", data).then((res) => {
+      if (res.data.acknowledged) {
+        // Swal.fire("Add Admin", "Admin Added Successfully", "success");
+        alert("Admin added successfully")
+        reset();
+      }
+    });
+    // fetch("https://mighty-cove-64498.herokuapp.com/admin", {
+    //   method: "POST",
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data)
+    //     if (data.acknowledged) {
+    //       alert("Admin successfully added");
+    //       reset();
+    //     }
+    //   });
   };
   return (
     <>

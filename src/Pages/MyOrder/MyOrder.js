@@ -7,7 +7,7 @@ const MyOrder = () => {
   const [myOrderData, setMyOrderData] = useState([]);
   const [isDelete, setIsDelete] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/services`)
+    fetch(`https://mighty-cove-64498.herokuapp.com/services`)
       .then((res) => res.json())
       .then((data) => {
         const matchData = data.filter((dt) => dt.email === currentUser.email);
@@ -18,7 +18,7 @@ const MyOrder = () => {
   const handleDeleteItem = (id) => {
     const confimMessage = window.confirm("Are your sure delete your Service?");
     if (confimMessage) {
-      fetch(`http://localhost:5000/myOrder/${id}`, {
+      fetch(`https://mighty-cove-64498.herokuapp.com/myOrder/${id}`, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
       })

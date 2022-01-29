@@ -8,14 +8,14 @@ const ManageOrder = () => {
   const [isDelete, setIsDelete] = useState(null);
   const {currentUser} = useAuth();
   useEffect(() => {
-    fetch(`http://localhost:5000/services`)
+    fetch(`https://mighty-cove-64498.herokuapp.com/services`)
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [isDelete]);
   const handleDelete = (id) => {
     const confirmMessage = window.confirm("Are you sure?");
     if (confirmMessage) {
-      fetch(`http://localhost:5000/services/${id}`, {
+      fetch(`https://mighty-cove-64498.herokuapp.com/services/${id}`, {
         method: "DELETE",
         headers: { "content-type": "application/json" },
       })
@@ -34,7 +34,7 @@ const ManageOrder = () => {
   const handleUpdate = (id) => {
     const confirmMessage = window.confirm("Do you want to update your Status?");
     if (confirmMessage) {
-      fetch(`http://localhost:5000/services/${id}`, {
+      fetch(`https://mighty-cove-64498.herokuapp.com/services/${id}`, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(services),

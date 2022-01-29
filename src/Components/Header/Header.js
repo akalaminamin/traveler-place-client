@@ -9,15 +9,16 @@ import "./Header.css";
 
 const Header = () => {
   const { currentUser, logOut } = useAuth();
-  const [admin, setAdmin] = useState();
+  const [admin, setAdmin] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/admin").then((res) => {
+    axios.get("https://mighty-cove-64498.herokuapp.com/admin").then((res) => {
       const userAdmin = res.data.find(
-        (single) => single?.email === currentUser?.email
+        (admin) => admin?.email ===  currentUser?.email
       );
       setAdmin(userAdmin);
     });
   }, []);
+  console.log(admin);
   return (
     <>
       <Navbar bg="light" expand="lg" className="custom-nav">

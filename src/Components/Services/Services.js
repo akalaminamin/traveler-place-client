@@ -22,7 +22,7 @@ const Services = () => {
   useEffect(async () => {
     setLoading(true);
     const res = await axios.get(
-      "http://localhost:5000/services"
+      "https://mighty-cove-64498.herokuapp.com/services"
     );
     const approvedPost = res.data.filter(singleData => singleData.status === "Approved");
     setService(approvedPost);
