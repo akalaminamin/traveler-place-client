@@ -43,14 +43,14 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(email, password);
-      history.push('/')
+      history.push("/");
     } catch (err) {
       console.log(err.message);
       setLoading(false);
       setError("Failed to login");
     }
   };
-
+  console.log(email, password)
   return (
     <div className="login-wrapper d-flex align-items-center justify-content-center">
       <div className="login d-flex align-items-center justify-content-center border border-primary flex-column">
@@ -58,22 +58,21 @@ const Login = () => {
         <h4 className="mb-4 fw-bold text-uppercase">Login</h4>
         <Form className="w-75" onSubmit={handleSubmit}>
           <Form.Control
-            className="my-3 w-full"
-            name="email"
-            size="sm"
             type="email"
-            defaultValue={email}
-            placeholder="Email"
-            onchange={handleChange}
+            className="my-3"
+            placeholder="Enter email"
+            value={email}
+            name="email"
+            onChange={handleChange}
+            required
           />
           <Form.Control
-            className="my-3 w-full"
-            size="sm"
-            name="password"
             type="password"
-            defaultValue={password}
             placeholder="Password"
-            onchange={handleChange}
+            value={password}
+            name="password"
+            onChange={handleChange}
+            required
           />
           <Form.Control
             className="my-3 w-full btn btn-primary"
