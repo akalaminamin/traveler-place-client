@@ -9,17 +9,15 @@ import "./Header.css";
 
 const Header = () => {
   const { currentUser, logOut } = useAuth();
-  const [admin, setAdmin] = useState([]);
-  // useEffect(() => {
-  //   axios.get("http://localhost:5000/admin").then((res) => {
-  //     const userAdmin = res.data.find(
-  //       (singleAdmin) => singleAdmin?.email === currentUser?.email
-  //     );
-  //     setAdmin(userAdmin);
-  //   });
-  // }, []);
-
-  console.log(admin, currentUser?.email);
+  const [admin, setAdmin] = useState();
+  useEffect(() => {
+    axios.get("http://localhost:5000/admin").then((res) => {
+      const userAdmin = res.data.find(
+        (single) => single?.email === currentUser?.email
+      );
+      setAdmin(userAdmin);
+    });
+  }, []);
   return (
     <>
       <Navbar bg="light" expand="lg" className="custom-nav">
@@ -55,15 +53,18 @@ const Header = () => {
                   <Nav.Link className="headerNav" as={Link} to="/admin">
                     Admin
                   </Nav.Link>
-                  {/* <h6 className="mx-2 mb-0 text-danger">
-                    {currentUser.displayName}
-                  </h6> */}
-                  <img
-                    style={{ width: "50px" }}
-                    className="login-img rounded-circle mx-3"
-                    src={currentUser.photoURL}
-                    alt="user photo"
-                  />
+                  {!currentUser?.photoURL ? (
+                    <h6 className="mx-2 mb-0 text-danger">
+                      {currentUser.displayName}
+                    </h6>
+                  ) : (
+                    <img
+                      style={{ width: "50px" }}
+                      className="login-img rounded-circle mx-3"
+                      src={currentUser.photoURL}
+                      alt="user photo"
+                    />
+                  )}
                   <Nav.Link
                     className="d-flex align-items-center headerNav"
                     as={Link}

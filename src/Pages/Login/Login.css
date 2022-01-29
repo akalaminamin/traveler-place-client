@@ -5,7 +5,8 @@
 .login {
   width: 45vw;
   background: #fff;
-  height: 50vh;
+  padding: 40px 0px;
+  height: auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px;
 }

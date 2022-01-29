@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Container, Button, Table } from "react-bootstrap";
+import useAuth from "../../Hooks/useAuth";
 import "./ManageOrder.css";
 
 const ManageOrder = () => {
   const [services, setServices] = useState([]);
   const [isDelete, setIsDelete] = useState(null);
+  const {currentUser} = useAuth();
   useEffect(() => {
     fetch(`http://localhost:5000/services`)
       .then((res) => res.json())
@@ -29,7 +31,6 @@ const ManageOrder = () => {
         });
     }
   };
-
   const handleUpdate = (id) => {
     const confirmMessage = window.confirm("Do you want to update your Status?");
     if (confirmMessage) {
@@ -68,10 +69,10 @@ const ManageOrder = () => {
             <tbody className="text-start">
               {services.map((service) => (
                 <tr key={service._id}>
-                  <td>{service.name}</td>
+                  <td>{currentUser?.displayName}</td>
                   <td>{service.phone}</td>
                   <td>{service.email}</td>
-                  <td>{service.placeName}</td>
+                  <td>{service.name}</td>
                   <td>${service.price}</td>
                   <td>
                     <Button

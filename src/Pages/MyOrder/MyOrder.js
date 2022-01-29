@@ -37,7 +37,7 @@ const MyOrder = () => {
   };
   return (
     <div className="myOrder">
-      <h2 className="text-center py-5">Your All Booking</h2>
+      <h2 className="text-center py-5">Your All Posts</h2>
       <Container>
         <Table striped hover bordered>
           <thead>
@@ -54,10 +54,10 @@ const MyOrder = () => {
           <tbody className="text-start">
             {myOrderData.map((order) => (
               <tr key={order._id}>
-                <td>{order.name}</td>
+                <td>{currentUser?.displayName}</td>
                 <td>{order.phone}</td>
                 <td>{order.email}</td>
-                <td>{order.placeName}</td>
+                <td>{order.name}</td>
                 <td>${order.price}</td>
                 <td>
                   <span

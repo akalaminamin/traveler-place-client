@@ -6,6 +6,9 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useState, useEffect } from "react";
 
@@ -26,9 +29,34 @@ const useFirebase = () => {
     });
     return () => unsubscribe();
   }, []);
+
+  // signup function
+  async function signup(email, password, username) {
+    await createUserWithEmailAndPassword(auth, email, password);
+
+    // update profile
+    await updateProfile(auth.currentUser, {
+      displayName: username,
+    });
+
+    const user = auth.currentUser;
+    setCurrentUser({
+      ...user,
+    });
+  }
+
+  // login function
+  function login(email, password) {
+    const auth = getAuth();
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  // google sign in
   const signInWithgoogle = () => {
     return signInWithPopup(auth, googleProvider);
   };
+
+  // logout
   const logOut = () => {
     return signOut(auth).then(() => {
       setCurrentUser({});
@@ -36,6 +64,8 @@ const useFirebase = () => {
   };
 
   return {
+    signup,
+    login,
     currentUser,
     loading,
     setCurrentUser,

@@ -3,22 +3,21 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import logo from "../../Assest/image/logo.png";
-import "./Login.css";
+import "../Login/Login.css";
 import { Form, Alert } from "react-bootstrap";
 
-const Login = () => {
-  const { setCurrentUser, signInWithgoogle, login } = useAuth();
+const Register = () => {
+  const { setCurrentUser, signInWithgoogle, signup } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const redirect_uri = location.state?.from || "/";
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
-  const { email, password } = user;
+
   const handleGoogleSignIn = () => {
     signInWithgoogle()
       .then((result) => {
@@ -33,54 +32,65 @@ const Login = () => {
       });
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
+
+    // do validation
+    if (password !== confirmPassword) {
+      return setError("Passwords don't match!");
+    }
+
     try {
       setError("");
       setLoading(true);
-      await login(email, password);
-      history.push('/')
+      await signup(email, password, username);
+      history.push("/")
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
       setLoading(false);
-      setError("Failed to login");
+      setError("Failed to create an account!");
     }
-  };
-
+  }
   return (
     <div className="login-wrapper d-flex align-items-center justify-content-center">
       <div className="login d-flex align-items-center justify-content-center border border-primary flex-column">
         <img src={logo} alt="" className="mb-5" />
-        <h4 className="mb-4 fw-bold text-uppercase">Login</h4>
+        <h4 className="mb-4 fw-bold text-uppercase">Register</h4>
         <Form className="w-75" onSubmit={handleSubmit}>
           <Form.Control
             className="my-3 w-full"
-            name="email"
             size="sm"
-            type="email"
-            defaultValue={email}
-            placeholder="Email"
-            onchange={handleChange}
+            type="text"
+            placeholder="Username"
+            onChange={(e) => setUsername(e.target.value)}
           />
           <Form.Control
             className="my-3 w-full"
             size="sm"
-            name="password"
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Form.Control
+            className="my-3 w-full"
+            size="sm"
             type="password"
-            defaultValue={password}
             placeholder="Password"
-            onchange={handleChange}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Form.Control
+            className="my-3 w-full"
+            size="sm"
+            type="password"
+            placeholder="Confirm Password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Form.Control
             className="my-3 w-full btn btn-primary"
             size="sm"
             type="submit"
-            value="Login"
             disabled={loading}
+            value="Register"
           />
         </Form>
         {error ? <Alert variant="danger">{error}</Alert> : null}
@@ -89,11 +99,11 @@ const Login = () => {
           <FcGoogle className="google-icon" />
         </button>
         <span>
-          Don't have an account? <Link to="/register">Create an account?</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </span>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
